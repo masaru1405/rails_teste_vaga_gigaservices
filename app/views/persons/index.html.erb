@@ -1,2 +1,23 @@
-<h1>Persons#index</h1>
-<p>Find me in app/views/persons/index.html.erb</p>
+<h1>API Pessoas</h1>
+
+<h4>Busca por nome:</h4>
+<%= form_with url: root_path, method: :get do |form| %>
+  <%= form.text_field :search, value: params[:search], placeholder: "Digite o nome ou parte dele" %>
+  <%= form.submit "Buscar", name: nil %>
+<% end %>
+
+<% if @persons %>
+  <ul>
+    <% @persons.each do |person| %>
+      <li><%= person.title %></li>
+      <li><%= person.first_name %></li>
+      <li><%= person.last_name %></li>
+      <li><%= person.gender %></li>
+      <li><%= person.email %></li>
+      <%= image_tag person.picture %>
+    <% end %>
+  </ul>
+  <div class="text-center">
+    <%= paginate @persons %>
+  </div>
+<% end %>
