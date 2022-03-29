@@ -6,6 +6,9 @@
   <%= form.submit "Buscar", name: nil %>
 <% end %>
 
+<h2><%= params %></h2>
+<p><%= @persons %></p>
+
 <% if @persons %>
   <ul>
     <% @persons.each do |person| %>
@@ -20,4 +23,8 @@
   <div class="text-center">
     <%= paginate @persons %>
   </div>
+<% end %>
+
+<% if !params[:search].nil? and params[:search].empty? %>
+  <h3>Nenhum resultado encontrado.</h3>
 <% end %>
