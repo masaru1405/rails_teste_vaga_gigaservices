@@ -5,5 +5,5 @@
 </div>
 
 <div>
-  <%= link_to 'Voltar', persons_path %>
+  <%= link_to 'Voltar', "/persons?search=#{cookies[:search]}" %>
 </div>

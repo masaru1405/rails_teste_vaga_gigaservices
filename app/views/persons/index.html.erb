@@ -1,30 +1,40 @@
-<h1>API Pessoas</h1>
+<div class="row">
+  <h1>API Pessoas</h1>
 
-<h4>Busca por nome:</h4>
-<%= form_with url: persons_path, method: :get do |form| %>
-  <%= form.text_field :search, value: params[:search], placeholder: "Digite o nome ou parte dele" %>
-  <%= form.submit "Buscar", name: nil %>
+  <h4>Busca por nome:</h4>
+  <%= form_with url: persons_path, method: :get do |form| %>
+    <%= form.text_field :search, value: params[:search], placeholder: "Digite o nome ou parte dele" %>
+    <%= form.submit "Buscar", name: nil %>
+  <% end %>
+
+  <% if @persons %>
+    <ul>
+      <% @persons.each do |person| %>
+        <li><%= person.title %></li>
+        <li><%= link_to person.first_name, person %></li>
+        <li><%= person.last_name %></li>
+        <li><%= person.gender %></li>
+        <li><%= person.email %></li>
+        <%= image_tag person.picture %>
+      <% end %>
+    </ul>
+    <div class="text-center">
+      <%= paginate @persons %>
+    </div>
+  <% else %>
+    <h4>Nenhum resultado encontrado. Tente novamente.</h4>
+  <% end %>
+</div>
+
+<%
+=begin%>
+<% if !params[:search].nil?  %>
+  <% if params[:search].empty? or !params[:search].empty? %>
+    <div class="row">
+      <h4>Nenhum resultado encontrado. Tente novamente.</h4>
+    </div>
+  <% end %>
 <% end %>
 
-<h2><%= params %></h2>
-<p><%= @persons %></p>
-
-<% if @persons %>
-  <ul>
-    <% @persons.each do |person| %>
-      <li><%= person.title %></li>
-      <li><%= link_to person.first_name, person %></li>
-      <li><%= person.last_name %></li>
-      <li><%= person.gender %></li>
-      <li><%= person.email %></li>
-      <%= image_tag person.picture %>
-    <% end %>
-  </ul>
-  <div class="text-center">
-    <%= paginate @persons %>
-  </div>
-<% end %>
-
-<% if !params[:search].nil? and params[:search].empty? %>
-  <h3>Nenhum resultado encontrado.</h3>
-<% end %>
+<%
+=end%>

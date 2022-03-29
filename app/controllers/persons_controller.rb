@@ -13,6 +13,7 @@ class PersonsController < ApplicationController
     if params[:search]
       result = Person.search(params[:search]) #pesquiso no model
       if result
+        cookies[:search] = params[:search]
         @persons = result.page(params[:page]) #faz a paginação dos resultados (default 10)
       else
         nil
