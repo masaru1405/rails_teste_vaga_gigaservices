@@ -1,7 +1,7 @@
 <h1>API Pessoas</h1>
 
 <h4>Busca por nome:</h4>
-<%= form_with url: root_path, method: :get do |form| %>
+<%= form_with url: persons_path, method: :get do |form| %>
   <%= form.text_field :search, value: params[:search], placeholder: "Digite o nome ou parte dele" %>
   <%= form.submit "Buscar", name: nil %>
 <% end %>
@@ -10,7 +10,7 @@
   <ul>
     <% @persons.each do |person| %>
       <li><%= person.title %></li>
-      <li><%= person.first_name %></li>
+      <li><%= link_to person.first_name, person %></li>
       <li><%= person.last_name %></li>
       <li><%= person.gender %></li>
       <li><%= person.email %></li>

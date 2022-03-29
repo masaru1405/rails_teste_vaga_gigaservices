@@ -1,2 +1,9 @@
-<h1>Persons#show</h1>
-<p>Find me in app/views/persons/show.html.erb</p>
+<div>
+  <h1><%= @person.first_name %> <%= @person.last_name %></h1>
+  <p><%= @person.email %></p>
+  <%= image_tag @person.picture %>
+</div>
+
+<div>
+  <%= link_to 'Voltar', persons_path %>
+</div>

@@ -13,6 +13,7 @@ class PersonsController < ApplicationController
   end
 
   def show
+    @person = Person.find(params[:id])
   end
 
   private
