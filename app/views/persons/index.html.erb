@@ -8,17 +8,24 @@
   <% end %>
 
   <% if @persons %>
-    <ul>
-      <% @persons.each do |person| %>
-        <li><%= person.title %></li>
-        <li><%= link_to person.first_name, person %></li>
-        <li><%= person.last_name %></li>
-        <li><%= person.gender %></li>
-        <li><%= person.email %></li>
-        <%= image_tag person.picture %>
+    
+    <% @persons.each do |person| %>
+      
+      <%= link_to person do %>
+        <div class="mycard">
+          <div class="col-img">
+            <%= image_tag person.picture, class:"rounded-circle" %>
+          </div>
+          <div class="col-info">
+            <h5 class="person-title"><%= "#{person.title} #{person.first_name} #{person.last_name}" %></h5>
+            <p>Gender: <%= person.gender %></p>
+            <p>Email: <%= person.email %></p>
+          </div>
+        </div>
       <% end %>
-    </ul>
-    <div class="text-center">
+    <% end %>
+    
+    <div class="pagination justify-content-center">
       <%= paginate @persons %>
     </div>
   <% else %>
@@ -26,15 +33,4 @@
   <% end %>
 </div>
 
-<%
-=begin%>
-<% if !params[:search].nil?  %>
-  <% if params[:search].empty? or !params[:search].empty? %>
-    <div class="row">
-      <h4>Nenhum resultado encontrado. Tente novamente.</h4>
-    </div>
-  <% end %>
-<% end %>
 
-<%
-=end%>

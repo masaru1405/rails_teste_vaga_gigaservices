@@ -1,9 +1,9 @@
-<div>
+<div class="row">
   <h1><%= @person.first_name %> <%= @person.last_name %></h1>
-  <p><%= @person.email %></p>
-  <%= image_tag @person.picture %>
+  <p class="email-show"><%= @person.email %></p>
+  <%= image_tag @person.picture, style: 'width:auto;' %>
 </div>
 
-<div>
-  <%= link_to 'Voltar', "/persons?search=#{cookies[:search]}" %>
+<div class="row link-back">
+  <%= link_to ' << Voltar', "/persons?search=#{cookies[:search]}", class: "back" %>
 </div>
