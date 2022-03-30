@@ -29,7 +29,11 @@
       <%= paginate @persons %>
     </div>
   <% else %>
-    <h4>Nenhum resultado encontrado. Tente novamente.</h4>
+    <% if params[:search] == "" %>
+      <h4>Nenhum resultado encontrado. Tente novamente.</h4>
+    <% elsif params[:search]  and @persons.nil? %> <!--O nome buscado não existe-->
+      <h4>Nenhum resultado encontrado. Tente novamente.</h4>
+    <% end %>
   <% end %>
 </div>
 
