@@ -1,4 +1,4 @@
-if Rails.env.development?
+if Rails.env.development? or Rails.env.test?
 
    %x(rails db:drop db:create db:migrate) 
 
