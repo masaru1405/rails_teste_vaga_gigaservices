@@ -1,5 +1,6 @@
-
-%x(rails db:drop db:create db:migrate) 
+if Rails.env.development? or Rails.env.test?
+   %x(rails db:drop db:create db:migrate) 
+end
 
 response = RestClient.get 'https://randomuser.me/api/?format=json&results=30&inc=gender,name,email,picture&nat=br&seed=giga'
 json = JSON.parse response
